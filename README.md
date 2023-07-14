@@ -22,7 +22,7 @@ clone repo
 
 **Atleast one file must be provided as argument and must have extension of csv**. To convert multiple csv files run same command with multiple file path.
 
-samples files have been provided To test run:
+samples files have been provided for test:
 
 ``` go
 go run convert-csv-json.go adjustments.csv new-top-surnames.csv state-pop.csv
