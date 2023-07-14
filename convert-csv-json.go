@@ -21,7 +21,7 @@ func checkArguments(paths []string) ([]string, error) {
 	return paths, nil
 }
 
-func checkPaths(paths []string) ([]string, error) {
+func validatePath(paths []string) ([]string, error) {
 	wg := sync.WaitGroup{}
 	errChan := make(chan error)
 
@@ -192,7 +192,7 @@ func compose(funcs ...func([]string) ([]string, error)) func([]string) ([]string
 }
 
 func main() {
-	verifyArguments := compose(checkArguments, checkPaths, validateExtensions)
+	verifyArguments := compose(checkArguments, validatePath, validateExtensions)
 	verifiedPaths, _ := verifyArguments(os.Args[1:])
 	wg := sync.WaitGroup{}
 
@@ -204,7 +204,7 @@ func main() {
 			defer file.Close()
 
 			if err != nil {
-				fmt.Printf("issue with file: %s\n", path, err)
+				fmt.Printf("issue with file: %s\n", err)
 				os.Exit(41)
 			}
 			decodeFiles(file, path)
