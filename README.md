@@ -1,4 +1,4 @@
-# Script
+# CSV TO JSON FILE CONVERTER
 
 Can be used to convert csv files to a JSON file. It uses the first entires as the object key.
 
